@@ -15,16 +15,18 @@ program
   .command('choose')
   .action(()=>{
     inquirer.prompt([{
-      type: 'checkbox',
+      type: 'list',
       message: '测试一下',
-      name: 'checkoutboxcommand',
+      name: 'listcheck',
       choices:[
         new inquirer.Separator('===The Meats==='),
         {
-          name: '选择1'
+          name: '选择1',
+          value: 1
         },
         {
-          name: '选择2'
+          name: '选择2',
+          value: 2
         }
       ],
       validate(answer){

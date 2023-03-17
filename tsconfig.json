@@ -7,7 +7,10 @@
     "outDir": "./bin",
     "target": "ES5",
     "paths": {
-      "@":["./src"]
+      "@":["./src"],
+      "@utils":["./utils"],
+      "@config":["./config"],
+      "@command":["./command"]
     }
   }
 }
