@@ -1,0 +1,25 @@
+{
+  "name": "yan-cli",
+  "version": "1.0.0",
+  "description": "脚手架项目",
+  "main": "index.js",
+  "bin": {
+    "yancli": "/bin/src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "commander": "^10.0.0",
+    "inquirer": "^8.2.5",
+    "loading-cli": "^1.1.0",
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.3"
+  }
+}
