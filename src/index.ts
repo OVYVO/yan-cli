@@ -4,7 +4,8 @@
 import { Command } from 'commander'
 import Pack from '../package.json'
 // import inquirer from 'inquirer'
-import { loading } from '@utils'
+// import { loading } from '@utils'
+import  {CBlue}  from '@utils'
 
 const program = new Command()
 
@@ -39,21 +40,24 @@ program
   //     console.log(answer)
   //   })
   // })
-  .command('loading')
+  // .command('loading')
+  // .action(()=>{
+  //   loading.start({
+  //     color: 'red',
+  //     text: '测试loading'
+  //   })
+  //   setTimeout(()=>{
+  //     loading.warn('警告')
+  //     setTimeout(()=>{
+  //       loading.info('提示')
+  //       setTimeout(()=>{
+  //         loading.stop()
+  //       },2000)
+  //     },2000)
+  //   },2000)
+  // })
+  .command('chalk')
   .action(()=>{
-    loading.start({
-      color: 'red',
-      text: '测试loading'
-    })
-    setTimeout(()=>{
-      loading.warn('警告')
-      setTimeout(()=>{
-        loading.info('提示')
-        setTimeout(()=>{
-          loading.stop()
-        },2000)
-      },2000)
-    },2000)
+    console.log(CBlue('测试一次啊'))
   })
-
 program.parse();
