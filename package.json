@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc && tsc-alias"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "typescript": "^5.0.2"
   },
   "devDependencies": {
-    "@types/inquirer": "^9.0.3"
+    "@types/inquirer": "^9.0.3",
+    "tsc-alias": "^1.8.3"
   }
 }

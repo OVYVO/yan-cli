@@ -8,9 +8,9 @@
     "target": "ES5",
     "paths": {
       "@":["./src"],
-      "@utils":["./utils"],
-      "@config":["./config"],
-      "@command":["./command"]
+      "@utils":["./src/utils"],
+      "@config":["./src/config"],
+      "@commands":["./src/commands"]
     }
   }
 }
