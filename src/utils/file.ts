@@ -2,7 +2,13 @@ import fs from 'fs'
 import { CRed } from './chalk'
 
 export const readDir = (path: string) => new Promise((resolve, reject) => {
-  fs.readdir(path,(err)=>{!err ? resolve(true) : reject(false)})
+  fs.readdir(path,(err)=>{
+    if(!err){
+      resolve(true)
+    }else{
+      resolve(false)
+    }
+  })
 })
 
 export const mkdir = (path:string) => new Promise((resolve, reject) => {

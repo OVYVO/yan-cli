@@ -6,8 +6,12 @@ export default async function(projectName, cmd){
   // 若force 为true删除，否则提示错误
   const currentPath = process.cwd() + '\\' +  projectName
 
+  process.on('unhandledRejection', (reason, p) => {
+    console.log('Promise: ', p, 'Reason: ', reason)
+  })
+
   try {
-    const exist = readDir(currentPath)
+    const exist = await readDir(currentPath)
     if(cmd.force){ // 强制覆盖
       exist && await rmdir(currentPath)
       await mkdir(currentPath)
@@ -17,9 +21,6 @@ export default async function(projectName, cmd){
       }
     }
   } catch (error) {
-    
+    console.log(error)
   }
-    await readDir(currentPath)
-    await rmdir(currentPath)
-    await mkdir(currentPath)
 }

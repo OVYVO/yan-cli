@@ -6,7 +6,7 @@ const commands = {
     option: [
       {
         cmd: '-f, --force',
-        msg: 'overwrite target dir if it exit'
+        msg: 'overwrite target dir if it exist'
       }
     ],
     action: commandCreate
