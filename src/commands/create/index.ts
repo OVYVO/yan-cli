@@ -15,9 +15,14 @@ export default async function(projectName, cmd){
     if(cmd.force){ // 强制覆盖
       exist && await rmdir(currentPath)
       await mkdir(currentPath)
+      //拉取git代码
     }else{
-      if(!exist){
-        return console.log(CRed('Not exist dir'))
+      if(exist){
+        return console.log(CRed('Exist dir'))
+      }else{
+        await mkdir(currentPath)
+        //拉取git代码
+        // download-git-repo
       }
     }
   } catch (error) {
