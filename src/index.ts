@@ -1,18 +1,10 @@
 #! /usr/bin/env node
 
-
-import { Command } from 'commander'
-import Pack from '../package.json'
-
+const program = require('commander')
 import Commands from '@commands'
+import { helpOptions }  from './core/help'
 
-const program = new Command()
-
-program
-  .name(Pack.name)
-  .version(Pack.version)
-  .helpOption('-h, --help')
-  .usage(`<command> [option]`)
+helpOptions()
 
 Object.keys(Commands).forEach(command=>{
   const current = program.command(command)
@@ -24,4 +16,4 @@ Object.keys(Commands).forEach(command=>{
   current.action(Commands[command].action)
 })
   
-program.parse();
+program.parse(process.argv);
