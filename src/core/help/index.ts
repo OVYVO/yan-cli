@@ -1,4 +1,4 @@
-import Pack from '../../package.json'
+import Pack from '../../../package.json'
 const program = require('commander')
 
 export function helpOptions(){

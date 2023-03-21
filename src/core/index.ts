@@ -1,4 +1,5 @@
 import commandCreate from './create'
+export * from './help'
 
 const commands = {
   'create <project-name>': {

@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
 const program = require('commander')
-import Commands from '@commands'
-import { helpOptions }  from './core/help'
+import Commands from './core'
+import { helpOptions }  from './core'
 
 helpOptions()
 
