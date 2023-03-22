@@ -15,6 +15,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^10.0.0",
+    "download-git-repo": "^3.0.2",
     "inquirer": "^8.2.5",
     "loading-cli": "^1.1.0",
     "typescript": "^5.0.2"

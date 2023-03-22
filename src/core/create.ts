@@ -1,31 +1,14 @@
-import { readDir, mkdir, rmdir, cError } from '@utils'
+const program = require('commander')
+import { handlerCreateProject } from './actions'
+import { vuePepo } from '@config/repo-config'
 
-export default async function(projectName, cmd){
-  // 判断params是否为空
-  // 判断文件夹是否存在
-  // 若force 为true删除，否则提示错误
-  const currentPath = process.cwd() + '\\' +  projectName
+console.log(vuePepo)
 
-  process.on('unhandledRejection', (reason, p) => {
-    console.log('Promise: ', p, 'Reason: ', reason)
-  })
-
-  try {
-    const exist = await readDir(currentPath)
-    if(cmd.force){ // 强制覆盖
-      exist && await rmdir(currentPath)
-      await mkdir(currentPath)
-      //拉取git代码
-    }else{
-      if(exist){
-        return console.log(cError('Exist dir'))
-      }else{
-        await mkdir(currentPath)
-        //拉取git代码
-        // download-git-repo
-      }
-    }
-  } catch (error) {
-    console.log(error)
-  }
+export const createCommands = () => {
+  program
+    .command('create <project> [others...]')
+    .description('create a new project')
+    .action(( project:string, others:string[] ) => {
+      handlerCreateProject(project,others)
+    })
 }
