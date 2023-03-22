@@ -2,9 +2,6 @@
 
 const program = require('commander')
 import Commands from './core'
-import { helpOptions }  from './core'
-
-helpOptions()
 
 Object.keys(Commands).forEach(command=>{
   const current = program.command(command)
