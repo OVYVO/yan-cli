@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
 const program = require('commander')
-import { helpOptions } from './core/help'
-import { createCommands } from './core/create'
+import { helpOptions } from '@core/help'
+import { createCommands } from '@core/create'
 
 
 // 创建辅助指令
