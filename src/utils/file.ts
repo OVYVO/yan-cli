@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { CRed } from './chalk'
+import { cError } from './chalk'
 
 export const readDir = (path: string) => new Promise((resolve, reject) => {
   fs.readdir(path,(err)=>{
@@ -16,7 +16,7 @@ export const mkdir = (path:string) => new Promise((resolve, reject) => {
     if(!err){
       resolve('')
     }else{
-      reject(CRed('Can not make dir'))
+      reject(cError('Can not make dir'))
     }
   })
 })
@@ -26,7 +26,7 @@ export const rmdir = (path:string) => new Promise((resolve, reject) => {
     if(!err){
       resolve('')
     }else{
-      reject(CRed('Can not remove dir'))
+      reject(cError('Can not remove dir'))
     }
   })
 })

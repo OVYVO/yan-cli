@@ -1,4 +1,4 @@
-import { readDir, mkdir, rmdir, CRed } from '@utils'
+import { readDir, mkdir, rmdir, cError } from '@utils'
 
 export default async function(projectName, cmd){
   // 判断params是否为空
@@ -18,7 +18,7 @@ export default async function(projectName, cmd){
       //拉取git代码
     }else{
       if(exist){
-        return console.log(CRed('Exist dir'))
+        return console.log(cError('Exist dir'))
       }else{
         await mkdir(currentPath)
         //拉取git代码

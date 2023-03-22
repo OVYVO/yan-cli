@@ -3,5 +3,5 @@ export * from './chalk'
 export * from './file'
 
 export {
-  loading,
+  loading
 }
