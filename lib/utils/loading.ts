@@ -9,27 +9,28 @@ class load {
   }
 
   start(options: Options | string ){
-    if(!this.load){
-      this.load = loading(options={
-        frames:["🕐 ", "🕑 ", "🕒 ", "🕓 ", "🕔 ", "🕕 ", "🕖 ", "🕗 ", "🕘 ", "🕙 ", "🕚 "]
-      }).start()
-    }else{
-      this.load.start(options as string)
-    }
+    if(this.load) this.load = null
+    this.load = loading(options = {
+      ...options as Options,
+      frames:["🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚"]
+    }).start()
   }
   stop(){
     this.load && this.load.stop()
   }
-  warn(text:string){
+  clear(){
+    this.load && this.load.clear()
+  }
+  warn(text?:string){
     this.load && this.load.warn(text)
   }
-  info(text:string){
+  info(text?:string){
     this.load && this.load.info(text)
   }
-  succeed(text:string){
+  succeed(text?:string){
     this.load && this.load.succeed(text)
   }
-  fail(text:string){
+  fail(text?:string){
     this.load && this.load.fail(text)
   }
 }
