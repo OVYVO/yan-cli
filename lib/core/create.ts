@@ -1,8 +1,5 @@
 const program = require('commander')
 import { handlerCreateProject } from './actions'
-import { vuePepo } from '@config/repo-config'
-
-console.log(vuePepo)
 
 export const createCommands = () => {
   program

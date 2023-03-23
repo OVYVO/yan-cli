@@ -1,24 +1,31 @@
 const { promisify } = require('util')
-
 const download = promisify(require('download-git-repo'))
 
+import loading from '@utils/loading'
 import { commandSpawn } from '@utils/terminal'
+import { vuePepo } from '@config/repo-config'
+import { cSuccess } from '@utils/chalk'
 
-const handlerCreateProject = async(project:string, others:string[]) => {
-  // clone项目
-  await download('xxxx',project,{clone: true})
-  
-  // 执行 npm install
-  // windows终端运行命令需要注意 npm.cmd => where npm
-  const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
-  await commandSpawn(command,['install'],{cwd: `./${project}`})
-  
-  // 执行 npm run serve
-  // 加上await之后并不会执行open代码，因为代码被阻塞
-  // await commandSpawn(command,['run', 'serve'],{cwd: `./${project}`})
-  commandSpawn(command,['run', 'serve'],{cwd: `./${project}`})
-}
+const command = process.platform == 'win32' ? 'npm.cmd' : 'npm' 
 
-export {
-  handlerCreateProject
+// create指令
+export const handlerCreateProject = async(project:string, others?:string[]) => {
+  // 代码克隆
+  loading.start({text:"Code warehouse cloning..."})
+  try {
+    await download(vuePepo, project, {clone: true})
+  } catch (error) {
+    loading.fail(`Sorry, code warehouse cloning failed. errorMessage: ${error}`)
+  }
+  loading.succeed('Code warehouse cloned successfully')
+  // 依赖安装
+  loading.start({text:"Code dependency installation in progress..."})
+  try {
+    await commandSpawn(command,['install'],{cwd: `./${project}`})
+  } catch (error) {
+    loading.fail(`Sorry, Dependency installation failed. errorMessage: ${error}`)
+  }
+  // 打开vscode
+  await commandSpawn('code',['.'],{cwd: `./${project}`})
+  cSuccess('✨✨✨Cerate project well done！✨✨✨')
 }
