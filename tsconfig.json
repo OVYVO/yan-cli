@@ -1,5 +1,5 @@
 {
-  "include": ["src/*"],
+  "include": ["lib/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "resolveJsonModule": true,
@@ -8,10 +8,10 @@
     "target": "ES5",
     "baseUrl": "./",
     "paths": {
-      "@/*":["src/*"],
-      "@utils/*":["src/utils/*"],
-      "@config/*":["src/config/*"],
-      "@core/*":["src/core/*"]
+      "@/*":["lib/*"],
+      "@utils/*":["lib/utils/*"],
+      "@config/*":["lib/config/*"],
+      "@core/*":["lib/core/*"]
     }
   }
 }

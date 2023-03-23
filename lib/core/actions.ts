@@ -1,7 +1,6 @@
 const { promisify } = require('util')
 
 const download = promisify(require('download-git-repo'))
-const open = require('open')
 
 import { commandSpawn } from '@utils/terminal'
 
@@ -18,8 +17,6 @@ const handlerCreateProject = async(project:string, others:string[]) => {
   // 加上await之后并不会执行open代码，因为代码被阻塞
   // await commandSpawn(command,['run', 'serve'],{cwd: `./${project}`})
   commandSpawn(command,['run', 'serve'],{cwd: `./${project}`})
-  // 打开浏览器 
-  open("https://www.baidu.com")
 }
 
 export {

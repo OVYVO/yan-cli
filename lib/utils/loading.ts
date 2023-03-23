@@ -3,7 +3,6 @@ import type { Options, Loading } from "loading-cli"
 
 class load {
   load: null | Loading
-  
   constructor(){
     this.load = null
   }
@@ -15,15 +14,12 @@ class load {
       this.load.start(options as string)
     }
   }
-
   stop(){
     this.load && this.load.stop()
   }
-
   warn(text:string){
     this.load && this.load.warn(text)
   }
-
   info(text:string){
     this.load && this.load.info(text)
   }
