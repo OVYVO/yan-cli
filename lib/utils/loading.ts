@@ -12,7 +12,7 @@ class load {
     if(this.load) this.load = null
     this.load = loading(options = {
       ...options as Options,
-      frames:["🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚"]
+      frames:["◰", "◳", "◲", "◱"]
     }).start()
   }
   stop(){
