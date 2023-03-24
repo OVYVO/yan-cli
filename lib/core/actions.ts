@@ -13,7 +13,7 @@ export const handlerCreateProject = async(project:string, others?:string[]) => {
   try {
     console.log(cSuccess('Automatically creating project...'))
     loading.start({text:'File Creating...'})
-    await download(vuePepo, `./${project}`)
+    await download(vuePepo, project, {clone: true})
     loading.succeed('File create done!')
     loading.start({text:'Dependent installing...'})
     await commandSpawn(command,['install'],{cwd: `./${project}`})
