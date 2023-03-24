@@ -3,3 +3,6 @@
 #### 解决办法：降低inquirer版本到8
 
 #### inquirer尽量使用cmd终端
+
+
+#### download-git-repo clone要求仓库是私有的 privite: true 否则会报clone错误
