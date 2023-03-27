@@ -4,6 +4,8 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "outDir": "./bin",
     "target": "ES5",
     "baseUrl": "./",
