@@ -11,6 +11,7 @@
     "baseUrl": "./",
     "paths": {
       "@/*":["lib/*"],
+      "@template/*":["lib/template/*"],
       "@utils/*":["lib/utils/*"],
       "@config/*":["lib/config/*"],
       "@core/*":["lib/core/*"]

@@ -1,5 +1,5 @@
 const program = require('commander')
-import { handlerCreateProject } from './actions'
+import { handlerCreateProject,handlerPrettifyProject } from './actions'
 
 export const createCommands = () => {
   program
@@ -7,4 +7,9 @@ export const createCommands = () => {
     .description('Create a new project from project template')
     .option('--force', 'Force overwrite of target folder')
     .action(handlerCreateProject)
+
+  program
+    .command('prettify')
+    .description('Add code prettify tools, Eslint Prettier')
+    .action(handlerPrettifyProject)
 }

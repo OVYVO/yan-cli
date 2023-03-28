@@ -1,6 +1,8 @@
 import { cError } from '@utils/chalk'
 import { existsDir, removeDir } from '@utils/file'
 import { loadRemotePreset } from '@utils/loadRemotePreset'
+import { loadPrettifyPlugin } from '@utils/loadPrettifyPlugin'
+
 import inquirer from 'inquirer';
 
 interface Options{
@@ -35,4 +37,8 @@ export const handlerCreateProject = async(project:string, options:Options) => {
   }else{
     loadRemotePreset(project,template)
   }
+}
+
+export const handlerPrettifyProject = async () => {
+  await loadPrettifyPlugin()
 }
