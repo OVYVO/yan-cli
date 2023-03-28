@@ -27,7 +27,7 @@ export const loadRemotePreset = async (project:string, type: number)=>{
     console.log('===========start project===========')
     console.log(cPrimary(`cd ${project}`))
     console.log(cPrimary('npm run dev'))
-    console.log('========================')
+    console.log('===================================')
   } catch (error) {
     loading.fail(`Sorry, Cerate project failed. errorMessage: ${error}`)
   }
