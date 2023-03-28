@@ -3,7 +3,7 @@ import { eslintConfig, eslintIgnore} from '@template/eslint'
 import { writeFileTree } from '@/utils/writeFileTree'
 import { commandSpawn } from '@utils/terminal'
 import loading from './loading'
-import { cSuccess, cPrimary } from './chalk'
+import { cSuccess, cPrimary, cWarning } from './chalk'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 
@@ -15,6 +15,8 @@ const waiteWritefile = {
 }
 
 export const loadPrettifyPlugin = async()=>{
+  const { IS_VUE_TEMP_CREATED } = process.env
+  if(IS_VUE_TEMP_CREATED !== '1') return console.log(cWarning('Please pull the template project before using this command!'))
   const curreent = process.cwd()
   // await commandSpawn(command,[
   //   'install',
