@@ -2,18 +2,19 @@ const { promisify } = require('util')
 const download = promisify(require('download-git-repo'))
 
 import { commandSpawn } from './terminal'
-import { vueRepo } from '../config/repo-config'
+import { admin_client_template, h5_client_template } from '../config/repo-config'
 import loading from './loading'
 import { cSuccess, cPrimary } from './chalk'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 const vueRepoMap = {
-  1: vueRepo
+  1: admin_client_template,
+  2: h5_client_template
 }
 
 export const loadRemotePreset = async (project:string, type: number)=>{
   try {
-    if(type == 2 || type == 3) return console.log(cSuccess('模板正在准备中,请选择其他模板...'))
+    if(type == 3) return console.log(cSuccess('模板正在准备中,请选择其他模板...'))
     console.log(cSuccess('Automatically creating project...'))
     loading.start({text:'File Creating...'})
     await download(vueRepoMap[type], project, {clone: true})
