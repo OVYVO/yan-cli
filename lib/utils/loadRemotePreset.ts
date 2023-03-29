@@ -15,7 +15,7 @@ const vueRepoMap = {
 export const loadRemotePreset = async (project:string, type: number)=>{
   try {
     if(type == 3) return console.log(cSuccess('模板正在准备中,请选择其他模板...'))
-    console.log(cSuccess('Automatically creating project...'))
+    console.log(cSuccess('Please wait a moment, the system is automatically creating a project for you...'))
     loading.start({text:'File Creating...'})
     await download(vueRepoMap[type], project, {clone: true})
     loading.succeed('File create done!')

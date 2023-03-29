@@ -37,7 +37,6 @@ export const handlerCreateProject = async(project:string, options:Options) => {
   }else{
     loadRemotePreset(project,template)
   }
-  process.env.IS_VUE_TEMP_CREATED = '1';
 }
 
 export const handlerPrettifyProject = async () => {

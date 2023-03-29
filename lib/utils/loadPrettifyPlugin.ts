@@ -4,7 +4,8 @@ import { writeFileTree } from '@/utils/writeFileTree'
 import { commandSpawn } from '@utils/terminal'
 import { resolvePkg } from '@utils/pkg'
 import loading from './loading'
-import { cSuccess, cPrimary, cWarning } from './chalk'
+import { existsDir} from '@utils/file'
+import { cSuccess,cWarning,cPrimary } from './chalk'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 
@@ -17,15 +18,17 @@ const waiteWritefile = {
 
 export const loadPrettifyPlugin = async()=>{
   // 环境判断
-  const { IS_VUE_TEMP_CREATED } = process.env
-  if(IS_VUE_TEMP_CREATED !== '1') {
+  const isExistsPkg = await existsDir('package.json')
+  const cwd = process.cwd()
+  
+  if(!isExistsPkg) {
     console.log()
     console.log('=========== Warning ===========')
     console.log(cWarning('Please run create command before using this command!'))
     console.log('===============================')
     return 
   } 
-  const cwd = process.cwd()
+  console.log(cSuccess('Please wait a moment, relevant plugins for prettify installing...'))
   // 依赖安装
   loading.start({text:'Dependent installing......'})
   await commandSpawn(command,[
@@ -43,18 +46,23 @@ export const loadPrettifyPlugin = async()=>{
   loading.succeed('Dependent install done!')
   // 添加相关的配置文件
   Object.keys(waiteWritefile).forEach(async key=>{
-    await writeFileTree(
-      cwd,
+    await writeFileTree(cwd,
       {[key]: typeof(waiteWritefile[key]) == 'string' ? waiteWritefile[key] : JSON.stringify(waiteWritefile[key], null, 2)},
-      [key])
+      [key]
+    )
   })
-  loading.succeed('Configuration file add done!')
   // 添加执行脚本
   const pkg = await resolvePkg(cwd)
   const pkgCopy = JSON.parse(JSON.stringify(pkg))
   pkgCopy.scripts['lint:prettier'] = 'prettier --write .'
+  pkgCopy.scripts['lint:eslint'] = 'eslint --fix'
   await writeFileTree(cwd,
     {'package.json': JSON.stringify(pkgCopy, null, 2)}
   )
-  loading.succeed('Plugin add success! You can use the [npm run lint:prettier] command or with other plugins to standardize your code')
+  console.log(cSuccess('✨✨✨ Job well done! ✨✨✨'))
+  console.log('')
+  console.log('===========use command===========')
+  console.log(cPrimary('npm run lint:prettier'))
+  console.log(cPrimary('npm run lint:eslint'))
+  console.log('===================================')
 }
