@@ -1,11 +1,12 @@
 import { prettierConfig, prettierIgnore} from '@template/prettier'
 import { eslintConfig, eslintIgnore} from '@template/eslint'
+import { cSuccess,cWarning,cPrimary } from '@utils/chalk'
 import { writeFileTree } from '@/utils/writeFileTree'
 import { commandSpawn } from '@utils/terminal'
 import { resolvePkg } from '@utils/pkg'
-import loading from './loading'
 import { existsDir} from '@utils/file'
-import { cSuccess,cWarning,cPrimary } from './chalk'
+
+import loading from './loading'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 
