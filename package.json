@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && tsc-alias"
+    "build": "tsc && tsc-alias",
+    "lint:prettier": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -19,10 +20,13 @@
     "fs-extra": "^11.1.1",
     "inquirer": "^8.2.5",
     "loading-cli": "^1.1.0",
+    "read-pkg": "^5.2.0",
     "typescript": "^5.0.2"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.3",
     "tsc-alias": "^1.8.3"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "yan-cli@1.0.0"
 }
