@@ -6,6 +6,9 @@
   "bin": {
     "yan": "/bin/lib/index.js"
   },
+  "files": [
+    "bin"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && tsc-alias",
