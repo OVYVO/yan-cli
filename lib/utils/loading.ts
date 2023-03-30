@@ -1,8 +1,10 @@
-import loading from "loading-cli"
-import type { Options, Loading } from "loading-cli"
+import ora from 'ora'
+import type { Options, Ora } from 'ora'
+
+import { cPrimary, cError, cWarning, cSuccess } from '@utils/chalk'
 
 class load {
-  load: null | Loading
+  load: null | Ora
 
   constructor(){
     this.load = null
@@ -10,9 +12,9 @@ class load {
 
   start(options: Options | string ){
     if(this.load) this.load = null
-    this.load = loading(options = {
+    this.load = ora(options = {
       ...options as Options,
-      frames:["◰", "◳", "◲", "◱"]
+      spinner: 'dots'
     }).start()
   }
   stop(){
@@ -22,16 +24,16 @@ class load {
     this.load && this.load.clear()
   }
   warn(text?:string){
-    this.load && this.load.warn(text)
+    this.load && this.load.warn(cWarning(text as string))
   }
   info(text?:string){
-    this.load && this.load.info(text)
+    this.load && this.load.info(cPrimary(text as string))
   }
   succeed(text?:string){
-    this.load && this.load.succeed(text)
+    this.load && this.load.succeed(cSuccess(text as string))
   }
   fail(text?:string){
-    this.load && this.load.fail(text)
+    this.load && this.load.fail(cError(text as string))
   }
 }
 
