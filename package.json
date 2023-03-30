@@ -1,18 +1,18 @@
 {
   "name": "yan-cli",
   "version": "1.0.0",
-  "description": "脚手架项目",
+  "description": "项目脚手架",
   "main": "index.js",
   "bin": {
-    "yancli": "/bin/lib/index.js"
+    "yan": "/bin/lib/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && tsc-alias",
     "lint:prettier": "prettier --write ."
   },
-  "author": "Ryan",
-  "license": "ISC",
+  "author": "Ryan Yan",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^10.0.0",
@@ -26,5 +26,12 @@
   "devDependencies": {
     "@types/inquirer": "^9.0.3",
     "tsc-alias": "^1.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OVYVO/yan-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OVYVO/yan-cli/issues"
   }
 }

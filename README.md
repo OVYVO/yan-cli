@@ -1,8 +1,21 @@
-## inquirer版本问题
-> Must use import to load ES Module: C:\Users\admin\Desktop\yan-cli\node_modules\inquirer\lib\inquirer.js
-#### 解决办法：降低inquirer版本到8
+> 前端工程脚手架项目
 
-#### inquirer尽量使用cmd终端
+## 安装
 
+```shell
+npm install yan-cli -g
+// or
+yarn add yan-cli -g
+// or
+cnpm install yan-cli -g
+```
 
-#### download-git-repo clone要求仓库是私有的 privite: true 否则会报clone错误
+## 快速开始
+```shell
+# 查看全部指令
+yan --help 
+```
+
+## LICENSE
+
+[MIT](LICENSE)
