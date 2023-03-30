@@ -40,5 +40,12 @@ export const handlerCreateProject = async(project:string, options:Options) => {
 }
 
 export const handlerPrettifyProject = async () => {
-  await loadPrettifyPlugin()
+  const { flag } = await inquirer.prompt({
+    type: 'confirm',
+    name: 'flag',
+    message: `This command will add plugins and configuration files to your project. Are you sure to continue?`,
+  })
+  if(flag){
+    await loadPrettifyPlugin()
+  }
 }
