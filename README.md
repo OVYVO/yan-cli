@@ -10,6 +10,9 @@ yarn add yan-cli -g
 cnpm install yan-cli -g
 ```
 
+## 注意
+偶尔由于网络原因会出现 'git clone' failed with status 128 错误，重新多次执行命令可解决。
+
 ## 快速开始
 ```shell
 # 查看全部指令
