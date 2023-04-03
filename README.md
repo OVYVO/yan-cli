@@ -11,7 +11,8 @@ cnpm install yan-cli -g
 ```
 
 ## 注意
-偶尔由于网络原因会出现 'git clone' failed with status 128 错误，重新多次执行命令可解决。
+1. 偶尔由于网络原因会出现 'git clone' failed with status 128 错误，重新多次执行命令可解决。
+2. 若npm install提示 与read-pkg包相关报错 Error: EPERM: operation not permitted, rename，请以管理员身份运行cmd。或者以管理员身份打开vscode，在terminal中执行npm install 命令
 
 ## 快速开始
 ```shell
