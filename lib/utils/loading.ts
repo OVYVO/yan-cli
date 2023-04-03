@@ -1,9 +1,7 @@
-import ora from 'ora'
-import type { Options, Ora } from 'ora'
-
+import ora, { Options, Ora } from 'ora'
 import { cPrimary, cError, cWarning, cSuccess } from '@utils/chalk'
 
-class load {
+class Loading {
   load: null | Ora
 
   constructor(){
@@ -37,4 +35,4 @@ class load {
   }
 }
 
-export default new load()
+export default new Loading()

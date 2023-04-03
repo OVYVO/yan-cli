@@ -1,32 +1,32 @@
 import fs from 'fs-extra'
 import { cError, cSuccess } from './chalk'
 
-export const existsDir = (path: string) => new Promise((resolve, reject) => {
-  fs.pathExists(path, (err,exists)=>{
-    if(!err){
-      resolve(exists) 
-    } else{
-      reject(console.log(cError(err)))
-    }
-  })
-})
+export const existsDir = async (path: string): Promise<boolean> => {
+  try {
+    const exists = await fs.pathExists(path);
+    return exists;
+  } catch (err) {
+    console.error(cError(`Check directory existence failed: ${err}`));
+    throw err;
+  }
+};
 
-export const makeDir = (path:string) => new Promise((resolve, reject) => {
-  fs.mkdir(path, err=>{
-    if(!err){
-      resolve(console.log(cSuccess(`Make dir ${path} success`)))
-    }else{
-      reject(console.log(cError(`Can not make dir ${path}! message: ${err}`)))
-    }
-  })
-})
+export const makeDir = async (path: string): Promise<void> => {
+  try {
+    await fs.mkdir(path);
+    console.log(cSuccess(`Successfully create directory: ${path}`));
+  } catch (err) {
+    console.error(cError(`Create directory failed: ${err}`));
+    throw err;
+  }
+};
 
-export const removeDir = (path:string) => new Promise((resolve, reject) => {
-  fs.remove(path, err=>{
-    if(!err){
-      resolve(console.log(cSuccess(`Remove dir ${path} success`)))
-    }else{
-      reject(console.log(cError(`Can not remove dir ${path}! message: ${err}`)))
-    }
-  })
-})
+export const removeDir = async (path: string): Promise<void> => {
+  try {
+    await fs.remove(path);
+    console.log(cSuccess(`Successfully remove directory: ${path}`));
+  } catch (err) {
+    console.error(cError(`Remove directory failed: ${err}`));
+    throw err;
+  }
+};

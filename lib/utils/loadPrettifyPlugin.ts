@@ -1,5 +1,5 @@
-import { prettierConfig, prettierIgnore} from '@template/prettier'
-import { eslintConfig, eslintIgnore} from '@template/eslint'
+import { prettierConfig, prettierIgnore } from '@template/prettier'
+import { eslintConfig, eslintIgnore } from '@template/eslint'
 import { cSuccess,cWarning,cPrimary } from '@utils/chalk'
 import { writeFileTree } from '@/utils/writeFileTree'
 import { commandSpawn } from '@utils/terminal'

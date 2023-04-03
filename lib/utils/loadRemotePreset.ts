@@ -20,7 +20,7 @@ export const loadRemotePreset = async (project:string, type: number)=>{
     await download(vueRepoMap[type], project, {clone: true})
     loading.succeed('File create done!')
     loading.start({text:'Dependent installing...'})
-    await commandSpawn(command,['install'],{cwd: `./${project}`})
+    await commandSpawn(command,['install', '--registry=https://registry.npm.taobao.org'],{cwd: `./${project}`})
     loading.succeed('Dependent install done!')
     console.log(cSuccess('✨✨✨ Cerate project well done! ✨✨✨'))
     console.log('')
