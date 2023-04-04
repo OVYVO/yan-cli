@@ -36,9 +36,10 @@ export const loadPrettifyPlugin = async()=>{
     //   'install',
     //   'prettier',
     //   'eslint',
-  //      'eslint-plugin-vue@latest' 
-  //      '@typescript-eslint/eslint-plugin@latest',
-  //      '@typescript-eslint/parser@latest'
+    //   'vue-eslint-parser'
+    //   'eslint-plugin-vue@latest' 
+    //   '@typescript-eslint/eslint-plugin@latest',
+    //   '@typescript-eslint/parser@latest'
     //   '-D'
     // ],{cwd})
     loading.succeed('Main dependence install done!')
@@ -54,6 +55,7 @@ export const loadPrettifyPlugin = async()=>{
     //     [key]
     //   )
     // })
+    await commandSpawn(command,['init', '@eslint/config'],{cwd, stdio:'inherit'})
     // 添加执行脚本
     // const pkg = await resolvePkg(cwd)
     // const pkgCopy = JSON.parse(JSON.stringify(pkg))
@@ -68,6 +70,7 @@ export const loadPrettifyPlugin = async()=>{
     // console.log(cPrimary('npm run lint:prettier'))
     // console.log(cPrimary('npm run lint:eslint'))
     // console.log('===================================')
+    console.log('123')
   } catch (error) {
     loading.fail(`Sorry, plugin add failed. errorMessage: ${error}`)
   }
