@@ -1,5 +1,5 @@
-import { spawn } from 'child_process'
-import type{ ChildProcess } from 'child_process'
+import { spawn, exec as cpExec } from 'child_process'
+import type{ ChildProcess, ExecException } from 'child_process'
 
 export const commandSpawn = (...args: Parameters<typeof spawn>) =>{
   return new Promise<void>((resolve, reject) => {

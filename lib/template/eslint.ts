@@ -1,4 +1,4 @@
-export const eslintConfig = {
+export const eslintConfig = `module.exports = {
   env: {
     browser: true,
     es2021: true,
@@ -55,7 +55,7 @@ export const eslintConfig = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off'
   }
-}
+}`
 
 
 export const eslintIgnore = `*.sh
