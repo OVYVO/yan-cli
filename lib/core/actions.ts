@@ -43,7 +43,7 @@ export const handlerPrettifyProject = async () => {
   const { flag } = await inquirer.prompt({
     type: 'confirm',
     name: 'flag',
-    message: `Code prettify, Are you sure to continue?`,
+    message: `This command will help you prettify your code, Are you sure to continue?`,
   })
   if(flag){
     await loadPrettifyPlugin()

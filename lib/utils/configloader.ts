@@ -1,16 +1,18 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
+import { existsDir } from './file'
+const path = require('path')
 
 interface Config {
   [key: string]: any;
 }
 
-class ConfigLoader {
+export class ConfigLoader {
   private config: Config = {};
 
   constructor(private readonly filePath: string) {}
 
-  public async load(): Promise<Config> {
+  async load(): Promise<Config> {
     const extname = this.getExtName();
     switch (extname) {
       case '.js':
@@ -29,7 +31,7 @@ class ConfigLoader {
     return this.config;
   }
 
-  public async write(newConfig: Config): Promise<void> {
+  async write(newConfig: Config): Promise<void> {
     const extname = this.getExtName();
     switch (extname) {
       case '.js':
@@ -53,8 +55,9 @@ class ConfigLoader {
   }
 
   private async loadJsConfig(): Promise<void> {
-    delete require.cache[require.resolve(this.filePath)];
-    const loadedModule = require(this.filePath);
+    const filepath = path.resolve(process.cwd(), this.filePath)
+    delete require.cache[require.resolve(filepath)];
+    const loadedModule = require(filepath);
     this.config = loadedModule.default || loadedModule;
   }
 
@@ -65,7 +68,7 @@ class ConfigLoader {
 
   private async loadYamlConfig(): Promise<void> {
     const content = await fs.promises.readFile(this.filePath, { encoding: 'utf8' });
-    this.config = yaml.safeLoad(content);
+    this.config = yaml.load(content);
   }
 
   private async writeJsConfig(newConfig: Config): Promise<void> {
@@ -79,12 +82,24 @@ class ConfigLoader {
   }
 
   private async writeYamlConfig(newConfig: Config): Promise<void> {
-    const content = yaml.safeDump(newConfig);
+    const content = yaml.dump(newConfig);
     await fs.promises.writeFile(this.filePath, content, { encoding: 'utf8' });
   }
 }
 
-export default ConfigLoader
+export const findConfigFile = async(files:{[index:string]: string[]}) =>{
+  for (const type of Object.keys(files)) {
+    const descriptors = files[type]
+    for (const filename of descriptors) {
+      const isExist = await existsDir(filename)
+      if(isExist){
+        return filename
+      }
+    }
+  }
+  return 'No configuration file exists!'
+}
+
 
 
 //example
