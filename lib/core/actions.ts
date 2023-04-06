@@ -1,4 +1,4 @@
-import { cError } from '@utils/chalk'
+import { cError, cWarning } from '@utils/chalk'
 import { existsDir, removeDir } from '@utils/file'
 import { loadRemotePreset } from '@utils/loadRemotePreset'
 import { loadPrettifyPlugin } from '@utils/loadPrettifyPlugin'
@@ -43,7 +43,7 @@ export const handlerPrettifyProject = async () => {
   const { flag } = await inquirer.prompt({
     type: 'confirm',
     name: 'flag',
-    message: `This command will help you prettify your code, Are you sure to continue?`,
+    message: `${cWarning('If you have already configured eslint/prettier, please use this command with caution. This command will overwrite your configuration. Are you sure you want to continue?')}`,
   })
   if(flag){
     await loadPrettifyPlugin()
