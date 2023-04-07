@@ -33,7 +33,6 @@ export const loadModule = (request, context, force = false) => {
     // 若字符以 / 开头，不会拼接到前面的路径；
     // 若以 ../ 开头，拼接前面的路径，且不含最后一节路径；
     // 若以 ./ 开头 或者没有符号 则拼接前面路径
-    console.log(path.resolve(context))
     const crequire = createRequire(path.resolve(context, 'package.json'))
     return crequire(request)
   } catch (e) {

@@ -9,6 +9,8 @@ import { existsDir } from '@utils/file'
 
 import loading from '../utils/loading'
 
+const path = require('path')
+
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 
 const waiteWritefile = {
@@ -51,7 +53,8 @@ export const loadPrettifyPlugin = async()=>{
     await commandSpawn(command,['init', '@eslint/config'],{cwd, stdio:'inherit'})
     // 修改eslint配置文件
     const esconfigfilename = await findConfigFile(eslintConfigfile)
-    const cfgloader = new ConfigLoader(esconfigfilename)
+    const esconfigfilePath = path.resolve(process.cwd(),esconfigfilename)
+    const cfgloader = new ConfigLoader(esconfigfilePath)
     const esconfig = await cfgloader.load()
     const esconfigCopy = JSON.parse(JSON.stringify(esconfig))
     esconfigCopy.extends = [

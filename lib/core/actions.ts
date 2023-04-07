@@ -2,7 +2,7 @@ import { loadPrettifyPlugin } from '@handler/loadPrettifyPlugin'
 import { loadRemotePreset } from '@handler/loadRemotePreset'
 import { existsDir, removeDir } from '@utils/file'
 import { cError, cWarning } from '@utils/chalk'
-import { initRepo } from '@handler/initRepo'
+import { operateRepo } from '@handler/handlerRepo'
 import inquirer from 'inquirer';
 
 const repoMap = require('@config/repo-config')
@@ -49,6 +49,6 @@ export const handlerPrettifyProject = async() => {
   }
 }
 // repo指令
-export const handlerInitRepo = async()=>{
-  await initRepo()
+export const handlerOperateRepo = async(options:Options)=>{
+  await operateRepo(options)
 }

@@ -16,6 +16,7 @@ export class ConfigLoader {
     const extname = this.getExtName();
     switch (extname) {
       case '.js':
+      case '.ts':
         await this.loadJsConfig();
         break;
       case '.json':
@@ -35,6 +36,7 @@ export class ConfigLoader {
     const extname = this.getExtName();
     switch (extname) {
       case '.js':
+      case '.ts':
         await this.writeJsConfig(newConfig);
         break;
       case '.json':
@@ -55,9 +57,8 @@ export class ConfigLoader {
   }
 
   private async loadJsConfig(): Promise<void> {
-    const filepath = path.resolve(process.cwd(), this.filePath)
-    delete require.cache[require.resolve(filepath)];
-    const loadedModule = require(filepath);
+    delete require.cache[require.resolve(this.filePath)];
+    const loadedModule = require(this.filePath);
     this.config = loadedModule.default || loadedModule;
   }
 
