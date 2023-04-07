@@ -1,10 +1,11 @@
-import { cError, cWarning } from '@utils/chalk'
-import { existsDir, removeDir } from '@utils/file'
-import { loadRemotePreset } from '@handler/loadRemotePreset'
 import { loadPrettifyPlugin } from '@handler/loadPrettifyPlugin'
+import { loadRemotePreset } from '@handler/loadRemotePreset'
+import { existsDir, removeDir } from '@utils/file'
+import { cError, cWarning } from '@utils/chalk'
 import { initRepo } from '@handler/initRepo'
-
 import inquirer from 'inquirer';
+
+const repoMap = require('@config/repo-config')
 
 interface Options{
   [index:string]: boolean
@@ -12,20 +13,17 @@ interface Options{
 
 // create指令
 export const handlerCreateProject = async(project:string, options:Options) => {
+  const choices = Object.keys(repoMap).map(item=>{
+    return {
+      name: item,
+      value: repoMap[item]
+    }
+  })
   const { template } = await inquirer.prompt({
     type: 'list',
     name: 'template',
-    message: `请选择${project}项目需要的模板`,
-    choices:[{
-      name: '后台模板',
-      value: 1
-    },{
-      name: 'H5模板',
-      value: 2
-    },{
-      name: '普通模板',
-      value: 3
-    }]
+    message: `Please select the template required for the ${project} project`,
+    choices
   })
   const isExistsDir = await existsDir(project)
   if(isExistsDir){

@@ -1,23 +1,19 @@
 const { promisify } = require('util')
 const download = promisify(require('download-git-repo'))
 
-import { admin_client_template, h5_client_template } from '@config/repo-config'
 import { cSuccess, cPrimary, cError } from '@utils/chalk'
 import { commandSpawn } from '@utils/terminal'
 import loading from '@utils/loading'
 
-const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
-const vueRepoMap = {
-  1: admin_client_template,
-  2: h5_client_template
-}
+const repoMap = require('@config/repo-config')
 
-export const loadRemotePreset = async (project:string, type: number)=>{
+const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
+
+export const loadRemotePreset = async (project:string, type: string)=>{
   try {
-    if(type == 3) return console.log(cError('模板正在准备中,请选择其他模板...'))
     console.log(cPrimary('Please wait a moment, the system is automatically creating a project for you...'))
     loading.start({text:'File Creating...'})
-    await download(vueRepoMap[type], project, {clone: true})
+    await download(repoMap[type], project, {clone: true})
     loading.succeed('File create done!')
     loading.start({text:'Dependent installing...'})
     await commandSpawn(command,['install', '--registry=https://registry.npm.taobao.org'],{cwd: `./${project}`, stdio:'pipe'})
