@@ -2,9 +2,9 @@ const { promisify } = require('util')
 const download = promisify(require('download-git-repo'))
 
 import { admin_client_template, h5_client_template } from '@config/repo-config'
-import { commandSpawn } from './terminal'
-import { cSuccess, cPrimary, cError } from './chalk'
-import loading from './loading'
+import { cSuccess, cPrimary, cError } from '@utils/chalk'
+import { commandSpawn } from '@utils/terminal'
+import loading from '@utils/loading'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 const vueRepoMap = {

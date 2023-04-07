@@ -1,7 +1,8 @@
 import { cError, cWarning } from '@utils/chalk'
 import { existsDir, removeDir } from '@utils/file'
-import { loadRemotePreset } from '@utils/loadRemotePreset'
-import { loadPrettifyPlugin } from '@utils/loadPrettifyPlugin'
+import { loadRemotePreset } from '@handler/loadRemotePreset'
+import { loadPrettifyPlugin } from '@handler/loadPrettifyPlugin'
+import { initRepo } from '@handler/initRepo'
 
 import inquirer from 'inquirer';
 
@@ -38,8 +39,8 @@ export const handlerCreateProject = async(project:string, options:Options) => {
     loadRemotePreset(project,template)
   }
 }
-
-export const handlerPrettifyProject = async () => {
+// prettify指令
+export const handlerPrettifyProject = async() => {
   const { flag } = await inquirer.prompt({
     type: 'confirm',
     name: 'flag',
@@ -48,4 +49,8 @@ export const handlerPrettifyProject = async () => {
   if(flag){
     await loadPrettifyPlugin()
   }
+}
+// repo指令
+export const handlerInitRepo = async()=>{
+  await initRepo()
 }

@@ -1,5 +1,9 @@
 const program = require('commander')
-import { handlerCreateProject,handlerPrettifyProject } from './actions'
+import { 
+  handlerCreateProject,
+  handlerPrettifyProject,
+  handlerInitRepo 
+} from './actions'
 
 export const createCommands = () => {
   program
@@ -12,4 +16,9 @@ export const createCommands = () => {
     .command('prettify')
     .description('Add code prettify tools, Eslint Prettier. exp: yan prettify')
     .action(handlerPrettifyProject)
+
+  program
+    .command('initrepo')
+    .description('Specify your template project address. exp: yan initrepo direct:https://github.com/xxx/xxx.git#main')
+    .action(handlerInitRepo)
 }

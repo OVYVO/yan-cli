@@ -1,13 +1,13 @@
 import { prettierConfig, prettierIgnore } from '@template/prettier'
 import { ConfigLoader, findConfigFile } from '@utils/configloader'
 import { cSuccess,cWarning,cPrimary } from '@utils/chalk'
-import { writeFileTree } from '@/utils/writeFileTree'
+import { writeFileTree } from '@utils/writeFileTree'
 import { eslintIgnore } from '@template/eslint'
 import { commandSpawn } from '@utils/terminal'
 import { resolvePkg } from '@utils/pkg'
 import { existsDir } from '@utils/file'
 
-import loading from './loading'
+import loading from '../utils/loading'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 
@@ -69,7 +69,7 @@ export const loadPrettifyPlugin = async()=>{
       defineExpose: 'readonly',
       withDefaults: 'readonly'
     }
-    esconfigCopy.rules ={
+    esconfigCopy.rules = {
       'vue/multi-word-component-names': 'off', // extends中继承过来的属性，可以重新修改
       '@typescript-eslint/ban-types': [
         'error',

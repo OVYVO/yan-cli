@@ -14,7 +14,8 @@
       "@template/*":["lib/template/*"],
       "@utils/*":["lib/utils/*"],
       "@config/*":["lib/config/*"],
-      "@core/*":["lib/core/*"]
+      "@core/*":["lib/core/*"],
+      "@handler/*":["lib/handler/*"]
     }
   }
 }
