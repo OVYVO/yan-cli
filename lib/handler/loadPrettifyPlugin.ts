@@ -13,7 +13,7 @@ const path = require('path')
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 
-const waiteWritefile = {
+const waiteWritefile:{[key:string]:any} = {
   '.prettierrc': prettierConfig,
   '.prettierignore': prettierIgnore,
   '.eslintignore': eslintIgnore

@@ -5,7 +5,8 @@ import { cSuccess, cPrimary, cError } from '@utils/chalk'
 import { commandSpawn } from '@utils/terminal'
 import loading from '@utils/loading'
 
-const repoMap = require('@config/repo-config')
+// const repoMap = require('@config/repo-config')
+import { repoMap } from '@config/repo-config'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 

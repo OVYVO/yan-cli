@@ -6,9 +6,11 @@
     "esModuleInterop": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
+    "noImplicitAny": false,
     "outDir": "./bin",
-    "target": "ES5",
-    "baseUrl": "./",
+    "target": "es5",
+    "allowJs": true,
+    "baseUrl": ".",
     "paths": {
       "@/*":["lib/*"],
       "@template/*":["lib/template/*"],

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import { existsDir } from './file'
+import { Option } from 'commander';
 const path = require('path')
 
 interface Config {
@@ -16,7 +17,6 @@ export class ConfigLoader {
     const extname = this.getExtName();
     switch (extname) {
       case '.js':
-      case '.ts':
         await this.loadJsConfig();
         break;
       case '.json':
@@ -36,7 +36,6 @@ export class ConfigLoader {
     const extname = this.getExtName();
     switch (extname) {
       case '.js':
-      case '.ts':
         await this.writeJsConfig(newConfig);
         break;
       case '.json':
@@ -69,7 +68,7 @@ export class ConfigLoader {
 
   private async loadYamlConfig(): Promise<void> {
     const content = await fs.promises.readFile(this.filePath, { encoding: 'utf8' });
-    this.config = yaml.load(content);
+    this.config = yaml.load(content) as Option;
   }
 
   private async writeJsConfig(newConfig: Config): Promise<void> {
@@ -100,24 +99,3 @@ export const findConfigFile = async(files:{[index:string]: string[]}) =>{
   }
   return 'No configuration file exists!'
 }
-
-
-
-//example
-// const configFilePath = './config.yaml';
-
-// async function main() {
-//   const configLoader = new ConfigLoader(configFilePath);
-
-//   // 加载配置
-//   const config = await configLoader.load();
-//   console.log(config);
-
-//   // 修改配置
-//   config.foo = 'bar';
-
-//   // 写入新配置
-//   await configLoader.write(config);
-// }
-
-// main().catch((err) => console.error(err));

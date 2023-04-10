@@ -5,8 +5,8 @@ import { cError, cWarning } from '@utils/chalk'
 import { operateRepo } from '@handler/handlerRepo'
 import inquirer from 'inquirer';
 
-const repoMap = require('@config/repo-config')
-
+// const repoMap = require('@config/repo-config')
+import { repoMap } from '@config/repo-config'
 interface Options{
   [index:string]: boolean
 }

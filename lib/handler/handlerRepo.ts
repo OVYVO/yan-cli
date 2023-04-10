@@ -1,7 +1,9 @@
-import { ConfigLoader } from '@utils/configloader'
+import { removeDir } from '@utils/file'
 import { commandSpawn } from '@utils/terminal'
 import { cSuccess,cPrimary,cError } from '@utils/chalk'
+import { writeFileTree } from '@utils/writeFileTree'
 import loading from '../utils/loading'
+import { repoMap } from '@config/repo-config'
 const path = require('path')
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
@@ -17,24 +19,25 @@ const getExePath = (exeName: string)=>{
 export const operateRepo = async(options)=>{
   try {
     const nodeOriginPath = getExePath('nodejs')
-    const originConfigPath = path.resolve(nodeOriginPath,'node_modules/yan-cli/lib/config/repo-config.js')
-    const loader = new ConfigLoader(originConfigPath)
-    const repoconfig = await loader.load()
+    const originConfigPath = path.resolve(nodeOriginPath,'node_modules/yan-cli/lib/config')
+    const originBinPath = path.resolve(nodeOriginPath,'node_modules/yan-cli/bin')
     if(options?.overwrite){
-      let repoconfig = {[options.overwrite[0]]:options.overwrite[1]}
-      await loader.write(repoconfig)
+      let repoconfig = `export const repoMap = ${JSON.stringify({[options.overwrite[0]]:options.overwrite[1]})}`
+      await writeFileTree(originConfigPath,{'repo-config.ts': repoconfig})
       console.log(cSuccess('Overwrite config success!'))
     }else if(options?.add){
-      let repoconfigCopy = JSON.parse(JSON.stringify(repoconfig))
+      let repoconfigCopy = JSON.parse(JSON.stringify(repoMap))
       repoconfigCopy = {...repoconfigCopy, [options.add[0]]:options.add[1]} 
-      await loader.write(repoconfigCopy)
+      let repoconfig = `export const repoMap = ${JSON.stringify(repoconfigCopy,null,2)}` 
+      await writeFileTree(originConfigPath,{'repo-config.ts': repoconfig})
       console.log(cSuccess('Add config success!'))
     }else if(options?.delete){
-      let repoconfigCopy = JSON.parse(JSON.stringify(repoconfig))
+      let repoconfigCopy = JSON.parse(JSON.stringify(repoMap))
       const key = options.delete
       if(Reflect.has(repoconfigCopy,key)){
         if(Reflect.deleteProperty(repoconfigCopy,key)){
-          await loader.write(repoconfigCopy)
+          let repoconfig = `export const repoMap = ${JSON.stringify(repoconfigCopy,null,2)}` 
+          await writeFileTree(originConfigPath,{'repo-config.ts': repoconfig})
           console.log(cSuccess('Delete config success!'))
         }else{
           return console.log(cError('Delete failed'))
@@ -44,13 +47,14 @@ export const operateRepo = async(options)=>{
       }
     }else{
       console.log(cPrimary('=============repo-config==========='))
-      console.log(repoconfig)
+      console.log(repoMap)
       console.log(cPrimary('==================================='))
     }
     if(options?.delete || options?.overwrite || options?.add){
+      await removeDir(originBinPath)
       loading.start({text:'Scaffold configuration changing...'})
-      await commandSpawn(command, ['run', 'build'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
-      await commandSpawn(command, ['link', '--force'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
+      await commandSpawn('npx.cmd', ['tsc', '&&', 'tsc-alias'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
+      //await commandSpawn(command, ['link', '--force'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
       loading.succeed(cSuccess('✨✨✨ Job well done! ✨✨✨'))
       console.log('')
       console.log('===========use command=============')
