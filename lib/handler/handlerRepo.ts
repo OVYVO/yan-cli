@@ -53,8 +53,8 @@ export const operateRepo = async(options)=>{
     if(options?.delete || options?.overwrite || options?.add){
       await removeDir(originBinPath)
       loading.start({text:'Scaffold configuration changing...'})
-      await commandSpawn('npx.cmd', ['tsc', '&&', 'tsc-alias'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
-      //await commandSpawn(command, ['link', '--force'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
+      await commandSpawn(command, ['run', 'build'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
+      await commandSpawn(command, ['link', '--force'],{cwd: path.resolve(nodeOriginPath,'node_modules/yan-cli')})
       loading.succeed(cSuccess('✨✨✨ Job well done! ✨✨✨'))
       console.log('')
       console.log('===========use command=============')
