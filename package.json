@@ -1,8 +1,7 @@
 {
   "name": "yan-temp-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "模板项目脚手架",
-  "main": "bin/lib/index.js",
   "bin": {
     "yan": "/bin/lib/index.js"
   },
@@ -11,8 +10,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && tsc-alias",
-    "lint:prettier": "prettier --write ."
+    "build": "tsc && tsc-alias"
   },
   "author": "Ryan Yan",
   "license": "MIT",
