@@ -2,7 +2,7 @@
   "include": ["lib/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     "esModuleInterop": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
