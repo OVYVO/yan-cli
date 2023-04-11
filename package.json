@@ -20,6 +20,7 @@
     "download-git-repo": "^3.0.2",
     "fs-extra": "^11.1.1",
     "inquirer": "^8.2.5",
+    "js-yaml": "^4.1.0",
     "ora": "^5.4.1",
     "read-pkg": "^5.2.0",
     "typescript": "^5.0.2"
