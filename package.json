@@ -1,12 +1,13 @@
 {
   "name": "yan-temp-cli",
-  "version": "1.0.4",
+  "version": "1.0.0",
   "description": "模板项目脚手架",
   "bin": {
     "yan": "/bin/index.js"
   },
   "files": [
-    "bin"
+    "bin",
+    "lib"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
