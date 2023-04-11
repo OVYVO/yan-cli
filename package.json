@@ -1,10 +1,13 @@
 {
   "name": "yan-temp-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "模板项目脚手架",
   "bin": {
     "yan": "/bin/lib/index.js"
   },
+  "files": [
+    "bin/**/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && tsc-alias"
