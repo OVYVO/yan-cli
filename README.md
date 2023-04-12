@@ -3,11 +3,11 @@
 ## 安装
 
 ```shell
-npm install yan-cli -g
+npm install yan-temp-cli -g
 // or
-yarn add yan-cli -g
+yarn add yan-temp-cli -g
 // or
-cnpm install yan-cli -g
+cnpm install yan-temp-cli -g
 ```
 
 ## 注意事项
