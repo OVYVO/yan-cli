@@ -1,6 +1,6 @@
 {
   "name": "yan-temp-cli",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "前端模板项目脚手架",
   "keywords": ["cli","yan"],
   "bin": {
