@@ -6,12 +6,12 @@
     "yan": "/bin/index.js"
   },
   "files": [
-    "bin",
-    "lib"
+    "bin"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && tsc-alias"
+    "build": "tsc && tsc-alias",
+    "postinstall": "node ./bin/core/init.js"
   },
   "author": "Ryan Yan",
   "license": "MIT",

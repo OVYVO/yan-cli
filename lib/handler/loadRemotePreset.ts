@@ -3,18 +3,18 @@ const download = promisify(require('download-git-repo'))
 
 import { cSuccess, cPrimary, cError } from '@utils/chalk'
 import { commandSpawn } from '@utils/terminal'
+import { readYanrc } from '@utils/yanrc'
 import loading from '@utils/loading'
-
-// const repoMap = require('@config/repo-config')
-import { repoMap } from '@config/repo-config'
 
 const command = process.platform == 'win32' ? 'npm.cmd' : 'npm'
 
 export const loadRemotePreset = async (project:string, type: string)=>{
   try {
     console.log(cPrimary('Please wait a moment, the system is automatically creating a project for you...'))
+    const { repo_config } = await readYanrc()
+    const repoConfig = JSON.parse(repo_config)
     loading.start({text:'File Creating...'})
-    await download(repoMap[type], project, {clone: true})
+    await download(repoConfig[type], project, {clone: true})
     loading.succeed('File create done!')
     loading.start({text:'Dependent installing...'})
     await commandSpawn(command,['install', '--registry=https://registry.npm.taobao.org'],{cwd: `./${project}`, stdio:'pipe'})

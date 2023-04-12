@@ -2,21 +2,23 @@ import { loadPrettifyPlugin } from '@handler/loadPrettifyPlugin'
 import { loadRemotePreset } from '@handler/loadRemotePreset'
 import { existsDir, removeDir } from '@utils/file'
 import { cError, cWarning } from '@utils/chalk'
+import { readYanrc } from '@utils/yanrc'
 import { operateRepo } from '@handler/handlerRepo'
 import inquirer from 'inquirer';
 
-// const repoMap = require('@config/repo-config')
-import { repoMap } from '@config/repo-config'
+
 interface Options{
   [index:string]: boolean
 }
 
 // create指令
 export const handlerCreateProject = async(project:string, options:Options) => {
-  const choices = Object.keys(repoMap).map(item=>{
+  const { repo_config } = await readYanrc()
+  const repoConfig = JSON.parse(repo_config)
+  const choices = Object.keys(repoConfig).map(item=>{
     return {
       name: item,
-      value: repoMap[item]
+      value: repoConfig[item]
     }
   })
   const { template } = await inquirer.prompt({
