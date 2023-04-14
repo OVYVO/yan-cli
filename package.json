@@ -2,7 +2,10 @@
   "name": "yan-cli-pro",
   "version": "1.0.0",
   "description": "前端模板项目脚手架",
-  "keywords": ["cli","yan"],
+  "keywords": [
+    "cli",
+    "yan"
+  ],
   "bin": {
     "yan": "/bin/index.js"
   },

@@ -27,16 +27,22 @@ export const handlerCreateProject = async(project:string, options:Options) => {
     message: `Please select the template required for the ${project} project`,
     choices
   })
+  let type
+  for (let key in repoConfig) {
+    if (repoConfig[key] === template) {
+      type = key
+    }
+  }
   const isExistsDir = await existsDir(project)
   if(isExistsDir){
     if(options.force){
       await removeDir(project)
-      loadRemotePreset(project,template)
+      loadRemotePreset(project,type)
     }else{
       console.log(cError(`Folder '${project}' already exists!`))
     }
   }else{
-    loadRemotePreset(project,template)
+    loadRemotePreset(project,type)
   }
 }
 // prettify指令
