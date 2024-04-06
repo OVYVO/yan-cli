@@ -1,5 +1,8 @@
 node_modules
 bin
-package-lock.json
-
 .env
+
+# File
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
